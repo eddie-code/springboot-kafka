@@ -4,9 +4,9 @@
 #
 ############################################################
 server:
+  port: 8001
   servlet:
     context-path: /producer
-  port: 8001
 
 ############################################################
 #
@@ -15,15 +15,19 @@ server:
 ############################################################
 spring:
   kafka:
-    bootstrap-servers:
+    bootstrap-servers: 192.168.8.247:9092
     producer:
-      retries: 0 # kafka producer 发送消息失败时的一个重试的次数
-      batch-size: 16384 # 批量发送数据的配置
-      buffer-memory: 33554432 # 设置kafka 生产者内存缓存区的大小（32M）
-      # kafka消息的序列化配置
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       # acks=0 ： 生产者在成功写入消息之前不会等待任何来自服务器的响应。
       # acks=1 ： 只要集群的首领节点收到消息，生产者就会收到一个来自服务器成功响应。
       # acks=-1: 表示分区leader必须等待消息被成功写入到所有的ISR副本(同步副本)中才认为producer请求成功。这种方案提供最高的消息持久性保证，但是理论上吞吐率也是最差的。
-      acks: 1 # 这个是kafka生产端最重要的选项
+      ## 	这个是kafka生产端最重要的选项
+      acks: 1
+      ## 批量发送数据的配置
+      batch-size: 16384
+      ## 设置kafka 生产者内存缓存区的大小（32M）
+      buffer-memory: 33554432
+      ## kafka producer 发送消息失败时的一个重试的次数
+      retries: 0
+      ## kafka消息的序列化配置
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
