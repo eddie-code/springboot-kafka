@@ -1,0 +1,14 @@
+server:
+  port: 8001
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: collector
+  http:
+    encoding:
+      charset: UTF-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: NON_NULL
+    time-zone: GMT+8
